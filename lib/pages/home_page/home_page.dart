@@ -4,6 +4,8 @@ import 'home_tab.dart';
 
 
 class HomePage extends StatefulWidget{
+  const HomePage({super.key});
+
   @override
   _HomePageState createState()=>_HomePageState();
 }
@@ -13,7 +15,7 @@ class _HomePageState extends State<HomePage>
 {
   int _selectedIndex = 0;
     final List<Widget> _tabs =[
-      HomeTab(),
+      const HomeTab(),
     ];
 
 
@@ -26,15 +28,17 @@ class _HomePageState extends State<HomePage>
     @override
     Widget build(BuildContext context){
       return Scaffold(
+        backgroundColor: Colors.black,
         body: IndexedStack(
           index: _selectedIndex,
           children: _tabs,
         ),
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: ConstColors.primaryBackground,
           currentIndex: _selectedIndex,
           onTap: _onItemTab ,
-          selectedItemColor: ConstColors.buttonSelected,
-          unselectedItemColor:ConstColors.buttonUnselected,
+          selectedItemColor:Colors.white,
+          unselectedItemColor:Colors.grey.shade100,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
