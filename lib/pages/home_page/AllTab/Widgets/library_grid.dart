@@ -1,24 +1,26 @@
+import 'package:final_project/core/localization/locale_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class LibraryGrid extends StatelessWidget {
-  final List<String> libraries = [
-    "Library 1",
-    "Library 2",
-    "Library 3",
-    "Library 4",
-    "Library 5",
-    "Library 6",
-    "Library 7",
-    "Library 8",
-    "Library 9",
-    "Library 10",
-    "Library 11",
-    "Library 12",
-  ];
-
-  @override
+    @override
   Widget build(BuildContext context) {
+      final localManager = Provider.of<LocalizationManager>(context);
+      final List<String> libraries = [
+          "${localManager.translate("library")} 1",
+        "${localManager.translate("library")}  2",
+        "${localManager.translate("library")}  3",
+        "${localManager.translate("library")}  4",
+        "${localManager.translate("library")}  5",
+        "${localManager.translate("library")}  6",
+        "${localManager.translate("library")}  7",
+        "${localManager.translate("library")}  8",
+        "${localManager.translate("library")}  9",
+        "${localManager.translate("library")}  10",
+        "${localManager.translate("library")}  11",
+        "${localManager.translate("library")}  12",
+      ];
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

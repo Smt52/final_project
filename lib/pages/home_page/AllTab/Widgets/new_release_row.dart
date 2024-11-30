@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:final_project/core/localization/locale_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class NewReleaseRow extends StatelessWidget
@@ -15,6 +17,7 @@ class NewReleaseRow extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final localManager= Provider.of<LocalizationManager>(context);
     List<String> keys = newReleases.keys.toList();
     Random random = Random();
     String randomKey = keys[random.nextInt(keys.length)];
@@ -34,9 +37,9 @@ class NewReleaseRow extends StatelessWidget
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "New Releases from",
-                        style: TextStyle(
+                      Text(
+                        localManager.translate("new_releases_from"),
+                        style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                             color: Colors.grey

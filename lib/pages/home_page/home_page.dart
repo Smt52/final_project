@@ -1,5 +1,8 @@
+import 'package:final_project/core/shared/drawer.dart';
 import 'package:final_project/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../core/localization/locale_manager.dart';
 import 'home_tab.dart';
 
 
@@ -27,6 +30,7 @@ class _HomePageState extends State<HomePage>
 
     @override
     Widget build(BuildContext context){
+      final localManager = Provider.of<LocalizationManager>(context);
       return Scaffold(
         backgroundColor: Colors.black,
         body: IndexedStack(
@@ -44,19 +48,19 @@ class _HomePageState extends State<HomePage>
                 icon: Icon(
                     _selectedIndex==0?Icons.home_filled:Icons.home_outlined
                 ),
-                label: "Home",
+                label: localManager.translate("home"),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                   _selectedIndex==1?Icons.search_rounded:Icons.search
               ),
-              label: "Search",
+              label: localManager.translate("search"),
             ),
             BottomNavigationBarItem(
                 icon: Icon(
                   _selectedIndex==2?Icons.library_music:Icons.library_music_outlined
                 ),
-              label: "Your Library"
+              label: localManager.translate("library")
             )
           ],
         ),

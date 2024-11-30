@@ -1,4 +1,7 @@
+import 'package:final_project/core/localization/locale_manager.dart';
+import 'package:final_project/core/shared/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../profile_pages/profile_picture.dart';
 import 'AllTab/alltab.dart';
 import 'MusicTab/music_tab.dart';
@@ -19,10 +22,11 @@ class _HomeTabState extends State<HomeTab>{
     MusicTab(),
     PodcastTab(),
   ];
-final List<String> _tabTitles = ["All","Music","Podcast"];
-
   @override
   Widget build(BuildContext context) {
+    final localManager = Provider.of<LocalizationManager>(context);
+    final List<String> _tabTitles = [localManager.translate("all"),localManager.translate("musics"),localManager.translate("podcasts")];
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -66,6 +70,7 @@ final List<String> _tabTitles = ["All","Music","Podcast"];
             ],
           ),
         ),
+        drawer: DrawerWidget(),
         body: _homeTabTabs[_selectedTabIndex],
       ),
     );

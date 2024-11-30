@@ -1,6 +1,10 @@
+import 'package:final_project/core/localization/locale_manager.dart';
+import 'package:final_project/core/theme/theme_manager.dart';
 import 'package:final_project/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +20,32 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (_)=>ThemeManager()),
+          ChangeNotifierProvider(create: (_)=>LocalizationManager())
+        ],
+      child: Consumer2<ThemeManager,LocalizationManager>(
+      builder: (context,themeManager,localManager,child){
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          title: "Clone",
+          locale: localManager.deviceLocale,
+          localizationsDelegates: const[
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: const[
+            Locale('en'),
+            Locale('tr'),
+          ],
+          home: const HomePage(),
+        );
+      },
+    ),
     );
   }
 }

@@ -6,13 +6,19 @@ class ProfilePicture extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Container(
-        color: Colors.grey[300],
-        child: const Icon(
-          size: 30,
-          Icons.person,
-          color: Colors.white,
+
+    return       GestureDetector(
+      onTap: (){
+        Scaffold.of(context).openDrawer();
+      },
+      child:  ClipOval(
+        child: Container(
+          color: Colors.grey[300],
+          child: const Icon(
+            size: 30,
+            Icons.person,
+            color: Colors.white,
+          ),
         ),
       ),
     );

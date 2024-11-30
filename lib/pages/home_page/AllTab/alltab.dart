@@ -1,5 +1,7 @@
+import 'package:final_project/core/localization/locale_manager.dart';
 import 'package:final_project/pages/home_page/AllTab/Widgets/new_release_row.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'Widgets/horizontal_grid.dart';
 import 'Widgets/library_grid.dart';
@@ -38,6 +40,7 @@ class _AllTabState extends State<AllTab> {
  ];
   @override
   Widget build(BuildContext context) {
+    final localManager = Provider.of<LocalizationManager>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -53,14 +56,14 @@ class _AllTabState extends State<AllTab> {
             ),
             SizedBox(
               height: 140,
-              child:  HorizontalScrollGrid(title:"Jump back in",cardTitles: _artists,icon: Icons.album_rounded,),
+              child:  HorizontalScrollGrid(title:localManager.translate("jump_back_in"),cardTitles: _artists,icon: Icons.album_rounded,),
             ),
             const SizedBox(
               height: 10,
             ),
             SizedBox(
               height: 140,
-                child: HorizontalScrollGrid(cardTitles: _userLibraries, title: "Recents", icon: Icons.library_music),
+                child: HorizontalScrollGrid(cardTitles: _userLibraries, title: localManager.translate("recent_listened"), icon: Icons.library_music),
             ),
             const SizedBox(
               height: 10,
