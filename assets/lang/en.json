@@ -13,5 +13,7 @@
   "new_releases_from": "New Releases from",
   "english": "English",
   "turkish": "Turkish",
-  "add_user": "Add Account"
+  "add_user": "Add Account",
+  "user_name": "User Name",
+  "view_profile": "View Profile"
 }

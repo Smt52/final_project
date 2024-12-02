@@ -13,5 +13,7 @@
   "new_releases_from": "Yeni Cikanlar: ",
   "english": "Ingilizce",
   "turkish": "Turkce",
-  "add_user": "Yeni Hesap Ekle"
+  "add_user": "Yeni Hesap Ekle",
+  "user_name": "Kullanici Adi",
+  "view_profile": "Profilime Git"
 }

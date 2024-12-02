@@ -1,5 +1,5 @@
 import 'package:final_project/core/localization/locale_manager.dart';
-import 'package:final_project/core/shared/drawer.dart';
+import 'package:final_project/core/shared/navigation_drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../profile_pages/profile_picture.dart';
@@ -31,6 +31,7 @@ class _HomeTabState extends State<HomeTab>{
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
