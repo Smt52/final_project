@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/theme/theme_manager.dart';
 
 class HorizontalScrollGrid extends StatelessWidget {
   final List<String> cardTitles;
   final String title;
   final IconData icon;
 
-  HorizontalScrollGrid({required this.cardTitles, required this.title,required this.icon});
+  HorizontalScrollGrid({required this.cardTitles, required this.title,required this.icon,});
 
   @override
   Widget build(BuildContext context) {
+    final themeManager = Provider.of<ThemeManager>(context);
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -22,8 +25,8 @@ class HorizontalScrollGrid extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: themeManager.themeMode == ThemeMode.dark ? Colors.white : Colors.black,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -42,7 +45,7 @@ class HorizontalScrollGrid extends StatelessWidget {
                     width: 120,
                     height: 140,
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
+                      color: themeManager.themeMode == ThemeMode.dark ? Colors.grey.shade800 : Colors.grey.shade800,
                     ),
                     child: Center(
                       child: Stack(
@@ -50,13 +53,14 @@ class HorizontalScrollGrid extends StatelessWidget {
                         children: [
                           Icon(
                             icon,
-                            color: Colors.white.withOpacity(0.2),
+                            color: themeManager.themeMode == ThemeMode.dark ? Colors.white.withOpacity(0.2) : Colors.black,
                             size: 100,
                           ),
                           Text(
                             cardTitles[index],
-                            style: const TextStyle(
-                              color: Colors.white,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: themeManager.themeMode == ThemeMode.dark ? Colors.white.withOpacity(0.8) : Colors.white,
                               fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),

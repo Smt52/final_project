@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/theme/theme_manager.dart';
 
 
 class ProfilePicture extends StatelessWidget{
@@ -6,18 +9,18 @@ class ProfilePicture extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-
+    final themeManager = Provider.of<ThemeManager>(context);
     return       GestureDetector(
       onTap: (){
         Scaffold.of(context).openDrawer();
       },
       child:  ClipOval(
         child: Container(
-          color: Colors.grey[300],
-          child: const Icon(
+          color: themeManager.themeMode == ThemeMode.dark ? Colors.grey[300] : Colors.black54,
+          child:  Icon(
             size: 30,
             Icons.person,
-            color: Colors.white,
+            color: themeManager.themeMode == ThemeMode.dark ? Colors.white : Colors.black,
           ),
         ),
       ),

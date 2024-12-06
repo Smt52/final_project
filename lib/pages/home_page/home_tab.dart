@@ -18,7 +18,7 @@ class _HomeTabState extends State<HomeTab>{
 
   int _selectedTabIndex = 0;
   final List<Widget> _homeTabTabs=[
-    const AllTab(),
+    const AllTab(isMusicTab: false,),
     MusicTab(),
     PodcastTab(),
   ];
@@ -32,7 +32,6 @@ class _HomeTabState extends State<HomeTab>{
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -71,7 +70,7 @@ class _HomeTabState extends State<HomeTab>{
             ],
           ),
         ),
-        drawer: DrawerWidget(),
+        drawer: const DrawerWidget(),
         body: _homeTabTabs[_selectedTabIndex],
       ),
     );

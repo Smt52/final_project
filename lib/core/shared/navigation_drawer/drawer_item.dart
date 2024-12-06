@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../theme/theme_manager.dart';
 
 class DrawerItem extends StatelessWidget{
   const DrawerItem ({Key? key,required this.name,required this.icon,required this.onPressed}) : super (key:key);
@@ -10,6 +13,7 @@ class DrawerItem extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
+    final themeManager = Provider.of<ThemeManager>(context);
     return InkWell(
       onTap: onPressed,
       child: SizedBox(
@@ -19,10 +23,18 @@ class DrawerItem extends StatelessWidget{
             Icon(
               icon,
               size: 20,
-                color: Colors.white,
+                color: themeManager.themeMode == ThemeMode.dark ?
+                Colors.grey : Colors.black,
             ),
             const SizedBox(width: 40,),
-            Text(name,style: const TextStyle(fontSize: 20,color: Colors.white),)
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 20,
+                color:themeManager.themeMode == ThemeMode.dark ?
+                Colors.grey : Colors.black,
+              ),
+            )
           ],
         ),
       ),

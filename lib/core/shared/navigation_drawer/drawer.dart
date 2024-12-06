@@ -1,5 +1,6 @@
 import 'package:final_project/core/localization/locale_manager.dart';
 import 'package:final_project/core/shared/navigation_drawer/drawer_item.dart';
+import 'package:final_project/core/theme/theme_manager.dart';
 import 'package:final_project/pages/profile_pages/add_user.dart';
 import 'package:final_project/pages/settings/settings.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class DrawerWidget extends StatelessWidget{
     return
       Drawer(
       child:Material(
-        color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(24, 80, 24, 0),
           child: Column(
@@ -46,12 +46,13 @@ class DrawerWidget extends StatelessWidget{
 
   Widget headerWidget(BuildContext context){
     final localManager = Provider.of<LocalizationManager>(context);
+    final themeManager = Provider.of<ThemeManager>(context);
     return Row(
       children: [
-        const Icon(
+        Icon(
           Icons.person,
           size: 60,
-          color: Colors.grey,
+          color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black,
         ),
          const SizedBox(width: 10,),
         Column(
@@ -60,10 +61,10 @@ class DrawerWidget extends StatelessWidget{
               children: [
                 Text(
                   localManager.translate("user_name"),
-                  style:const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Colors.white,
+                    color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black,
                   ),
                 ),
               ],
@@ -75,7 +76,7 @@ class DrawerWidget extends StatelessWidget{
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 12,
-                    color: Colors.grey.shade500,
+                    color: themeManager.themeMode == ThemeMode.dark ? Colors.grey.shade500 : Colors.black45,
                   ),
                 )
               ],

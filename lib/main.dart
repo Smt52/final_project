@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
+          themeMode: themeManager.themeMode,
           title: "Clone",
           locale: localManager.deviceLocale,
           localizationsDelegates: const[

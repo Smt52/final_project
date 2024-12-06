@@ -1,12 +1,15 @@
 import 'dart:math';
 
 import 'package:final_project/core/localization/locale_manager.dart';
+import 'package:final_project/core/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
 class NewReleaseRow extends StatelessWidget
 {
+  final String title;
+  final bool isSearch;
   final Map<String,String> newReleases = {
     "Bear" : "Letting Go",
     "Singer" : "Song 1",
@@ -15,9 +18,12 @@ class NewReleaseRow extends StatelessWidget
     "Singer3":"Song 4",
   };
 
+  NewReleaseRow({super.key,required this.title,required this.isSearch});
+
   @override
   Widget build(BuildContext context) {
     final localManager= Provider.of<LocalizationManager>(context);
+    final themeManager = Provider.of<ThemeManager>(context);
     List<String> keys = newReleases.keys.toList();
     Random random = Random();
     String randomKey = keys[random.nextInt(keys.length)];
@@ -29,30 +35,35 @@ class NewReleaseRow extends StatelessWidget
             children: [
               Row(
                 children: [
-                  const Icon(
+                  !isSearch ?
+                  Icon(
                     Icons.album_rounded,
                     size: 100,
-                    color: Colors.grey,
-                  ),
+                    color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black,
+                  ):const SizedBox.shrink(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        localManager.translate("new_releases_from"),
-                        style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.grey
+                      Padding(
+                        padding: isSearch ? const EdgeInsets.only(left: 16):EdgeInsets.zero,
+                        child: Text(
+                          localManager.translate(title),
+                          style: TextStyle(
+                              fontSize: isSearch ? 18 : 14,
+                              fontWeight: isSearch ? FontWeight.bold:FontWeight.normal,
+                              color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black87,
+                          ),
                         ),
                       ),
+                      !isSearch?
                       Text(
                         randomKey,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: themeManager.themeMode == ThemeMode.dark ? Colors.white : Colors.black,
                         ),
-                      ),
+                      ):const SizedBox.shrink(),
                     ],
                   ),
                 ],

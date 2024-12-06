@@ -7,13 +7,20 @@ import 'Widgets/horizontal_grid.dart';
 import 'Widgets/library_grid.dart';
 
 class AllTab extends StatefulWidget {
-  const AllTab({super.key});
+  final bool isMusicTab;
+  const AllTab({super.key,required this.isMusicTab});
 
   @override
   _AllTabState createState() => _AllTabState();
 }
 
 class _AllTabState extends State<AllTab> {
+ late bool _isMusicTab = false;
+ @override
+ void initState(){
+   super.initState();
+   _isMusicTab = widget.isMusicTab;
+ }
  final List<String> _artists = [
     "Drake",
     "Adele",
@@ -38,11 +45,11 @@ class _AllTabState extends State<AllTab> {
    'Yaz Akşamı Playlisti',
    'Farklı Ritimler'
  ];
+
   @override
   Widget build(BuildContext context) {
     final localManager = Provider.of<LocalizationManager>(context);
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -50,7 +57,9 @@ class _AllTabState extends State<AllTab> {
             const SizedBox(
               height: 10,
             ),
-              NewReleaseRow(),
+            !_isMusicTab
+                ? NewReleaseRow(title: "new_releases_from",isSearch: false,)
+                : const SizedBox.shrink(),
             const SizedBox(
               height: 10,
             ),
