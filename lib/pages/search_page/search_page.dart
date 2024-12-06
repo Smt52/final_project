@@ -35,23 +35,26 @@ class SearchPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context)=>SearchBarPage(localManager: localManager,themeManager: themeManager,)),
                   );
                 },
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      Icon(Icons.search,color: Colors.grey,),
-                      SizedBox(width: 10,),
-                      Text(
-                        localManager.translate("search"),
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16,right: 16),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: themeManager.themeMode == ThemeMode.dark ? Colors.grey[200] : Colors.black12,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.search,color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black),
+                        SizedBox(width: 10,),
+                        Text(
+                          localManager.translate("search"),
+                          style: TextStyle(color: themeManager.themeMode == ThemeMode.dark ? Colors.grey : Colors.black),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

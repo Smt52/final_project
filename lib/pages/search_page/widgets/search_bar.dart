@@ -84,7 +84,7 @@ class _SearchBarPageState extends State<SearchBarPage> {
               child: Text(
                 localManager.translate("cancel"),
                 style: TextStyle(
-                  color: Colors.grey[200]
+                  color: themeManager.themeMode == ThemeMode.dark ? Colors.grey[600] : Colors.black
                 ),
               )
           ),
