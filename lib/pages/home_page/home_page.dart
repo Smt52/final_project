@@ -1,3 +1,4 @@
+import 'package:final_project/pages/library_page/library_page.dart';
 import 'package:final_project/pages/search_page/search_page.dart';
 import 'package:final_project/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage>
       final List<Widget> _tabs =[
         const HomeTab(),
         SearchPage(localManager: localManager, themeManager: themeManager),
+        LibraryPage(localManager: localManager,themeManager: themeManager,),
       ];
       return Scaffold(
         body: IndexedStack(
